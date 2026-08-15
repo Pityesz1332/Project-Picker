@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --animate-roll-tick: roll-tick 0.12s ease-out;
+  --animate-roll-settle: roll-settle 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-roll-glow: roll-glow 0.5s ease-in-out infinite;
+}
+
+@keyframes roll-tick {
+  from {
+    transform: translateY(-8px);
+    opacity: 0.3;
+    filter: blur(2px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes roll-settle {
+  0% {
+    transform: scale(0.8) rotate(-3deg);
+    opacity: 0.4;
+  }
+  55% {
+    transform: scale(1.12) rotate(2deg);
+  }
+  80% {
+    transform: scale(0.97) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes roll-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 24px 4px rgba(139, 92, 246, 0.55);
+  }
+}
+
+body {
+  margin: 0;
+  cursor: url('/cursor-arrow.svg') 4 3, auto;
+}
+
+button:not(:disabled) {
+  cursor: inherit;
+}
+
+::selection {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
